@@ -4,34 +4,31 @@
       <div class="row">
         <h2>CREATE BLOG</h2>
       </div>
-      <form>
-        <div class="row">
-          <textarea class="form-control" id="body" rows="3"
-            placeholder="Blog Content"></textarea>
-        </div>
-        <div class="row">
-          <button type="submit" class="btn btn-primary" name="action" v-on:click="createPost">Submit</button>
-        </div>
-      </form>
+
+      <div class="row">
+        <input type="text" class="form-control" id="title" placeholder="Title">
+      </div>
+      <div class="row">
+        <textarea class="form-control" id="body" rows="3" placeholder="Blog Content"></textarea>
+      </div>
+      <br />
+      <div class="row">
+        <button class="btn btn-primary" name="action" v-on:click="createPost">Submit</button>
+      </div>
+
 
     </div>
 
   </div>
 </template>
 
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
 <script>
+  import axios from "axios"
+
   export default {
-    name: "Create"
-  };
-</script>
-
-<script>
-  var app = new Vue({
-    el: "#app",
+    name: "Create",
     methods: {
-      createPost: function () {
+      createPost: async function () {
         let title = document.getElementById("title").value
         let body = document.getElementById("body").value
 
@@ -48,5 +45,5 @@
           });
       }
     }
-  })
+  }
 </script>

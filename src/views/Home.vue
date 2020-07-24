@@ -9,14 +9,14 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-4" v-for="post in posts" v-bind:key="post">
+        <div class="col-4" v-for="post in posts" v-bind:key="post.id">
           <div class="card">
             <div class="card-body">
-              <h4 class="card-title" v-text="post.title"></h4>
-              <a href="#" class="btn btn-info">Read</a>
+              <h4 class="card-title">{{post.title}}</h4>
+              <router-link :to="'/detail/'+ post.id" class="btn btn-info">Read</router-link>
             </div>
             <div class="card-footer text-muted d-flex justify-content-center bg-transparent border-top-0">
-              <div class="views">Oct 20, 12:45PM</div>
+              <div class="views">{{post.created_at}}</div>
             </div>
           </div>
 
@@ -27,32 +27,26 @@
   </div>
 </template>
 
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
 <script>
   // @ is an alias to /src
   export default {
-    name: "Home"
-  }
-</script>
-
-<script type ="text/javascript">
-  var app = new Vue({
-    el: "#app",
-    data: {
-      test: "Lorem Ipsum VueJS",
-      posts: []
+    name: "Home",
+    data() {
+      return {
+        posts: []
+      }
     },
     methods: {
       init: function () {
-        axios.get('https://dummy-api.winfad.com/api/posts')
-          .then(function (response) {
-            app.posts = response.data.data;
+        const baseURI = 'https://dummy-api.winfad.com/api/posts'
+        this.$http.get(baseURI)
+          .then((result) => {
+            this.posts = result.data.data
           })
       }
     },
     mounted: function () {
       this.init()
     }
-  })
+  }
 </script>
