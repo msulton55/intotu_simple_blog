@@ -2,10 +2,10 @@
   <div id="app">
     <ul class="nav nav-pills justify-content-center">
       <li class="nav-item">
-        <router-link to="/" class="nav-link">Home</router-link>
+        <router-link to="/" class="nav-link" v-bind:class="{ active: this.$route.name=='Home' }">Home</router-link>
       </li>
       <li class="nav-item">
-        <router-link to="/create" class="nav-link">Create</router-link>
+        <router-link to="/create" class="nav-link" active-class="active">Create</router-link>
       </li>
     </ul>
     <router-view />
