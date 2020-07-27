@@ -4,7 +4,6 @@
       <div class="row">
         <h2>CREATE BLOG</h2>
       </div>
-
       <div class="row">
         <input type="text" class="form-control" id="title" placeholder="Title">
       </div>
@@ -15,10 +14,7 @@
       <div class="row">
         <button class="btn btn-primary" name="action" v-on:click="createPost">Submit</button>
       </div>
-
-
     </div>
-
   </div>
 </template>
 

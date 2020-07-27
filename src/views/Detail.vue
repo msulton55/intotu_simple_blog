@@ -15,8 +15,8 @@
 			</div>
 			<br />
 			<div class="row">
-        <button class="btn btn-primary" name="action" v-on:click="updatePost">Update</button>
-      </div>
+				<button class="btn btn-primary" name="action" v-on:click="updatePost">Update</button>
+			</div>
 		</div>
 	</div>
 </template>
@@ -39,21 +39,21 @@
 						this.post = result.data
 					})
 			},
-			
+
 			updatePost: async function () {
 				let title = document.getElementById("title").value
-        let body = document.getElementById("body").value
+				let body = document.getElementById("body").value
 
-        axios.post('https://dummy-api.winfad.com/api/posts/' + this.post.id + '/update', {
-            title: title,
-            body: body
-          })
-          .then(function (response) {
-            alert("Success Update!")
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+				axios.post('https://dummy-api.winfad.com/api/posts/' + this.post.id + '/update', {
+						title: title,
+						body: body
+					})
+					.then(function (response) {
+						alert("Success Update!")
+					})
+					.catch(function (error) {
+						console.log(error);
+					});
 			}
 		},
 		mounted: function () {
