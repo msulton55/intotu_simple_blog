@@ -4,6 +4,7 @@ import "./registerServiceWorker";
 import router from "./router";
 import store from "./store";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '@/assets/css/custom-global.css'
 import axios from 'axios';
 
 
