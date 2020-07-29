@@ -1,36 +1,60 @@
 <template>
   <div id="app">
-    <ul class="nav nav-pills justify-content-center">
-      <li class="nav-item">
-        <router-link to="/" class="nav-link" v-bind:class="{ active: this.$route.name=='Home' }">Home</router-link>
-      </li>
-      <li class="nav-item">
-        <router-link to="/create" class="nav-link" active-class="active">Create</router-link>
-      </li>
-    </ul>
-    <router-view />
+    <Navbar v-if="isLoggedIn" />
+    <router-view v-if="isLoggedIn" />
+    <!-- <router-link></router-link> -->
+    <Login v-else @Login::loginResult="handleLoginResult" />
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#custom {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+<script>
+  import Navbar from './components/Navbar.vue'
+  import Login from './views/Login.vue'
+  export default {
+    name: "App",
+    data() {
+      return {
+        userIsLoggedIn: false
+      }
+    },
+    components: {
+      Navbar,
+      Login
+    },
+    computed: {
+      isLoggedIn() {
+        return this.userIsLoggedIn
+      }
+    },
+    methods: {
+      handleLoginResult({
+        loginResult
+      }) {
+        this.userIsLoggedIn = loginResult
+      }
     }
   }
-}
+</script>
+
+<style lang="scss">
+  #app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+  }
+
+  #custom {
+    padding: 30px;
+
+    a {
+      font-weight: bold;
+      color: #2c3e50;
+
+      &.router-link-exact-active {
+        color: #42b983;
+      }
+    }
+  }
 </style>
