@@ -3,7 +3,7 @@
     <Navbar v-if="isLoggedIn" />
     <router-view v-if="isLoggedIn" />
     <!-- <router-link></router-link> -->
-    <Login v-else @Login::loginResult="handleLoginResult" />
+    <Login class="different-app" v-else @Login::loginResult="handleLoginResult" />
   </div>
 </template>
 
@@ -37,7 +37,12 @@
 </script>
 
 <style lang="scss">
-  #app {
+
+  .different-app {
+    text-align: left;
+  }
+
+  #app{
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

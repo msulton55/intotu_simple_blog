@@ -11,6 +11,12 @@ const routes: Array<RouteConfig> = [
       import("../views/Home.vue")
   },
   {
+    path: "/register",
+    name: "Register",
+    component: () =>
+      import("../views/Register.vue")
+  },
+  {
     path: "/create",
     name: "Create",
     // route level code-splitting
