@@ -8,7 +8,6 @@ import Create from "../views/Create.vue"
 import Detail from "../views/Detail.vue"
 import Login from "../views/Login.vue"
 import Register from "../views/Register.vue"
-import { nextTick } from 'vue/types/umd';
 
 Vue.use(VueRouter);
 
@@ -31,11 +30,7 @@ const routes: Array<RouteConfig> = [
     ],
     meta : {
       requiresAuth: true
-    },
-    beforeEnter : function (to, from, next) {
-      
     }
-    
   },
   {
     path: "/login", 
@@ -59,11 +54,9 @@ router.beforeEach((to, from, next) => {
       next()
       return
     }
-    else 
-      next('/login') 
-  } else {
-    next() 
+    next('/login') 
   }
+  next() 
 });
 
 
