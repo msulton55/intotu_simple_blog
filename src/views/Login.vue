@@ -5,10 +5,10 @@
         <div class="row">
           <div class="col-sm-6 offset-sm-3">
             <h2>Login</h2>
-            <form class="login">
+            <form class="login" @submit.prevent="login()">
               <div class="form-group">
-                <label for="username">Username</label>
-                <input v-model="username" type="text" name="username" class="form-control" required autofocus />
+                <label for="email">Email</label>
+                <input v-model="email" type="text" name="email" class="form-control" required autofocus />
                 <!-- <input v-model="username" type="text" name="username" class="form-control"
                   :class="{ 'is-invalid': submitted && !username }" /> -->
                 <!-- <div class="invalid-feedback" v-show="submitted && !username">Username is required</div> -->
@@ -39,14 +39,23 @@
 </style>
 
 <script>
+  import axios from 'axios'
   export default {
     name: "Login",
     data() {
       return {
-        username: "",
+        email: "",
         password: ""
       }
-      
+    },
+    methods: {
+      login() {
+        let email = this.email
+        let password = this.password
+        this.$store.dispatch('login', {email, password})
+        .then(() => this.$router.push('/'))
+        .catch(err => console.log(err))
+      }
     }
   }
 </script>
