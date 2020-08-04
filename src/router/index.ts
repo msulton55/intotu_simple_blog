@@ -49,14 +49,29 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
+  console.log('to')
+  console.log(to)
+  console.log('from')
+  console.log(from)
+  console.log('next')
+  console.log(next)
+  
+  console.log('==============')
   if(to.matched.some(record => record.meta.requiresAuth)) {
-    if (store.getters.isLoggedIn) {
-      next()
-      return
-    }
-    next('/login') 
+    console.log('masuk ke require auth')
+    console.log(store.getters.isLoggedIn)
+    console.log(to.path)
+    if (store.getters.isLoggedIn === '') {
+      console.log('masuk ke belum ada token jadi di lempar ke login')
+      next('/login')
+    } 
+    
+  } 
+  else if (store.getters.isLoggedIn !== '' && to.path === '/login') {
+    console.log('mencoba masuk ke login, tapi mental')
+    next('/')
   }
-  next() 
+  next()
 });
 
 
