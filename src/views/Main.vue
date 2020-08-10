@@ -5,17 +5,7 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-4" v-for="post in posts" v-bind:key="post.id">
-          <div class="card">
-            <div class="card-body">
-              <h4 class="card-title">{{post.title}}</h4>
-              <router-link :to="'/detail/'+ post.id" class="btn btn-info">Read</router-link>
-            </div>
-            <div class="card-footer text-muted d-flex justify-content-center bg-transparent border-top-0">
-              <div class="views">{{post.created_at}}</div>
-            </div>
-          </div>
-        </div>
+        <CardBlog v-for="post in posts" v-bind:key="post.id" v-bind:post="post" />
       </div>
     </div>
 
@@ -28,8 +18,8 @@
             <span aria-hidden="true">&laquo;</span>
           </a>
         </li>
-        <li class="page-item" v-for="num in total_page" v-bind:key="num"><a class="page-link" @click="goTo(num)"
-            style="cursor: pointer">{{num}}</a></li>
+        <li class="page-item" v-for="num in total_page" v-bind:key="num" v-bind:class="page===num ? 'active' : ''"><a
+            class="page-link" @click="goTo(num)" style="cursor: pointer">{{num}}</a></li>
         <li class="page-item">
           <a class="page-link" aria-label="Next" v-if="page != total_page" @click="next()" style="cursor: pointer">
             <span aria-hidden="true">&raquo;</span>
@@ -42,10 +32,13 @@
 
 <script>
   import Jumbotron from "../components/Jumbotron.vue"
+  import CardBlog from "../components/CardBlog.vue"
+
   export default {
     name: "Main",
     components: {
-      Jumbotron
+      Jumbotron,
+      CardBlog
     },
     data() {
       return {
